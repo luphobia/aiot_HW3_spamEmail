@@ -1,0 +1,10 @@
+{
+  "input_rows": 5574,
+  "output_rows": 5574,
+  "label_counts": {
+    "ham": 4827,
+    "spam": 747
+  },
+  "text_clean_nulls": 0,
+  "output_path": "datasets/processed/sms_spam_clean.csv"
+}

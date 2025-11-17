@@ -1,0 +1,74 @@
+execution_log:
+  - step: "Download dataset"
+    command: >
+      curl -L -o datasets/raw/sms_spam_no_header.csv
+      "https://raw.githubusercontent.com/PacktPublishing/Hands-On-Artificial-Intelligence-for-Cybersecurity/refs/heads/master/Chapter03/datasets/sms_spam_no_header.csv"
+    timestamp: "2025-11-17T13:00+08:00"
+    result: "File downloaded (5,572 rows, 2 columns)."
+
+  - step: "Preprocess"
+    command: >
+      python scripts/preprocess_emails.py
+      --input datasets/raw/sms_spam_no_header.csv
+      --output datasets/processed/sms_spam_clean.csv
+      --no-header --label-col-index 0 --text-col-index 1
+    timestamp: "2025-11-17T13:05+08:00"
+    result: "Processed CSV saved with 5,572 rows; report_preprocess.json generated."
+
+  - step: "Train"
+    command: >
+      python scripts/train_spam_classifier.py --seed 42 --eval-threshold 0.5
+    timestamp: "2025-11-17T13:10+08:00"
+    result: "F1=0.944, Precision=0.923, Recall=0.966; artifacts saved to models/."
+
+  - step: "Visualize"
+    command: >
+      python scripts/visualize_spam.py --class-dist --confusion-matrix --roc --pr --threshold-sweep
+    timestamp: "2025-11-17T13:20+08:00"
+    result: "Visualization PNGs saved under reports/visualizations/."
+
+  - step: "Token Frequency Visualization"
+    command: >
+      python scripts/visualize_top_tokens_by_class.py
+    timestamp: "2025-11-17T13:22+08:00"
+    result: "Top token frequency plot for ham and spam saved to reports/visualizations/top_tokens_by_class.png."
+
+  - step: "App Test"
+    command: "streamlit run app/streamlit_app.py"
+    timestamp: "2025-11-17T13:25+08:00"
+    result: "App launched locally; verified live threshold slider and predictions."
+
+  - step: "App Enhancement"
+    command: >
+      Updated app/streamlit_app.py to display token frequency plot and top tokens table in Overview tab, and improved Live Inference UI per spec.
+    timestamp: "2025-11-17T13:27+08:00"
+    result: "Streamlit app shows class token frequency, top tokens, and supports live prediction with example buttons and probability bar."
+
+  - step: "Validate"
+    command: "python scripts/openspec_validate.py --change add-spam-email-classifier"
+    timestamp: "2025-11-17T13:30+08:00"
+    result: "All files OK; metrics meet acceptance_criteria (test.f1=0.944 ≥ 0.90)."
+
+  - step: "Validate (unit test tiny sample)"
+    command: >
+      python scripts/openspec_validate.py --change add-spam-email-classifier --allow-tiny-sample
+    timestamp: "2025-11-17T13:35+08:00"
+    result: "Validation OK on tiny sample; test.f1 >= 0.5."
+
+  - step: "Test pipeline (smoke)"
+    command: >
+      pytest tests/test_smoke_pipeline.py
+    timestamp: "2025-11-17T13:36+08:00"
+    result: "Pipeline test passed; metadata.json exists and f1 >= 0.5 on tiny sample."
+
+  - step: "Setup CI workflow"
+    command: >
+      Created .github/workflows/ci.yml for automated testing and validation
+    timestamp: "2025-11-17T13:40+08:00"
+    result: "CI runs pytest and openspec_validate on push/pull_request."
+
+  - step: "Write README"
+    command: >
+      Created README.md with Quick Start, Dataset Source, Project Structure, CRISP-DM, Commands, OpenSpec Flow, Troubleshooting
+    timestamp: "2025-11-17T13:41+08:00"
+    result: "README includes all setup, usage, and troubleshooting instructions."

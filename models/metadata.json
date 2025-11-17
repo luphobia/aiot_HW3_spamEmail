@@ -1,0 +1,33 @@
+{
+  "flags": {
+    "config": "configs/default.yaml",
+    "input": "datasets/processed/sms_spam_clean.csv",
+    "ngram_range": "1,2",
+    "min_df": 2,
+    "sublinear_tf": true,
+    "model": "logreg",
+    "C": 2.0,
+    "class_weight": "balanced",
+    "seed": 42,
+    "test_size": 0.2,
+    "calibrate": "none",
+    "eval_threshold": 0.5,
+    "output_dir": "models/"
+  },
+  "seed": 42,
+  "timestamp": "2025-11-17T19:32:12.700959",
+  "class_names": [
+    "ham",
+    "spam"
+  ],
+  "scores": {
+    "train": 0.9961857751851021,
+    "test": 0.9802690582959641,
+    "precision": 0.9319727891156463,
+    "recall": 0.9194630872483222,
+    "f1": 0.9256756756756757,
+    "roc_auc": 0.9897696166298442
+  },
+  "eval_threshold": 0.5,
+  "input_hash": "0300ba081f33fb00c53769afbf3c2ea979ca070743d6c6a0d42b3579cd69fdf4"
+}
