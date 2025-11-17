@@ -1,6 +1,46 @@
 # Spam Email Classifier
 
 ## DEMOSITE
+- https://2025aiot-hw3-spamemail.streamlit.app/
+
+## Project Overview
+
+This project implements a complete machine learning pipeline for classifying SMS messages as spam or ham (not spam). It is designed for educational and practical use, demonstrating best practices in data science, ML engineering, and reproducible research.
+
+### Objectives
+- Detect spam messages using supervised machine learning.
+- Provide a reproducible pipeline from raw data to deployment.
+- Enable interactive exploration and live inference via a Streamlit app.
+- Support OpenSpec workflow for transparent change management and validation.
+
+### Features
+- **Data Preprocessing:** Cleans and normalizes SMS text, removes noise, and prepares features for modeling.
+- **Model Training:** Trains a classifier (Logistic Regression, SVM, or SGD) with threshold tuning and calibration.
+- **Evaluation & Visualization:** Generates metrics (F1, Precision, Recall), confusion matrix, ROC/PR curves, and threshold sweep plots.
+- **Token Analysis:** Visualizes top tokens and token frequency by class (ham/spam).
+- **Streamlit App:** Interactive UI with tabs for overview, visualization, threshold tuning, live inference, and batch upload. Includes bilingual support (English/Traditional Chinese).
+- **Batch & Single Prediction:** Scripts for batch CSV prediction and single text prediction.
+- **Validation & CI:** Automated validation and continuous integration using OpenSpec and GitHub Actions.
+
+### Workflow
+1. **Download Dataset:** Fetch SMS spam data from a public source.
+2. **Preprocess Data:** Clean and tokenize messages, save processed CSV.
+3. **Train Model:** Fit classifier, calibrate, and save artifacts.
+4. **Visualize Results:** Generate plots for class distribution, metrics, and token analysis.
+5. **Run App:** Launch Streamlit app for interactive demo and live inference.
+6. **Validate Pipeline:** Run automated checks to ensure metrics and outputs meet acceptance criteria.
+7. **Deploy & Archive:** Push changes to GitHub, archive proposal and tasks in OpenSpec.
+
+### Technology Stack
+- Python 3.x
+- pandas, numpy, scikit-learn
+- matplotlib, seaborn
+- streamlit
+- PyYAML, pickle
+- GitHub Actions (CI)
+- OpenSpec workflow
+
+---
 
 ## Quick Start
 
